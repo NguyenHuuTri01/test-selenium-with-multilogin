@@ -36,7 +36,14 @@ def GG_Login(driver: webdriver, email: NewEmail) -> bool:
             input_recovery.send_keys(email.recovery)
             input_recovery.send_keys(Keys.ENTER)
         except:
-            print("[INFO] No need to enter Recovery")
+            try:
+                wait = WebDriverWait(driver, 10)
+                input_recovery = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@name='email']")))
+                time.sleep(2)
+                input_recovery.send_keys(email.recovery)
+                input_recovery.send_keys(Keys.ENTER)
+            except:
+                print("[INFO] No need to enter Recovery")
 
         try:
             time.sleep(3)

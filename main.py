@@ -37,16 +37,16 @@ print(email)
 print(profile)
 
 driver = MultiLogin.Start(ACCOUNT_USERNAME, ACCOUNT_PASSWORD, profile)
-
+driver.maximize_window()
 if driver is not None:
 
-    # resultLogin = Google.GG_Login(driver, email)
-    # time.sleep(1)
-    resultLogin = True
+    resultLogin = Google.GG_Login(driver, email)
+    time.sleep(1)
+    # resultLogin = True
     if resultLogin is True:
         OtherWebsite.Auto_Review_No_Image(driver, link, content, email.email)
         time.sleep(2)
-        # OtherWebsite.Sign_Out_Windows(driver)
+        OtherWebsite.Sign_Out_Windows(driver)
 
     time.sleep(5)
     MultiLogin.Stop(profile)
